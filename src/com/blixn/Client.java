@@ -85,7 +85,6 @@ public class Client {
     }
 
     public void pong(String destination) {
-        showMessage("PONG :" + destination);
         sendMessage("PONG :" + destination);
     }
 

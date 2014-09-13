@@ -22,10 +22,10 @@ public class ServerListener implements Runnable{
             while (true) {
                 String message = input.readLine();
 
-                client.showMessage(decode(message));
-
                 if (message.startsWith("PING"))
                     client.pong(message.substring(6) + "\r\n");
+                else
+                    client.showMessage(decode(message));
 
             }
         } catch (IOException io) {
@@ -35,11 +35,14 @@ public class ServerListener implements Runnable{
 
     private String decode(String message) {
 
-        //TODO: Format: :Blixn!~emini@cloaked-40880839.a163.priv.bahnhof.se PRIVMSG #zhg :Hm
-        //if (message.contains("PRIVMSG")) {
-        //    message = message.substring(message.indexOf("PRIVMSG") + "PRIVMSG".length()+1);
-        //}
+        String author = "";
 
-        return message;
+        //TODO: Format: :Blixn!~emini@cloaked-40880839.a163.priv.bahnhof.se PRIVMSG #zhg :Hm
+        if (message.contains("PRIVMSG")) {
+            author = message.substring(message.indexOf(":")+1, message.indexOf("!")) + ": ";
+            message = message.substring(message.lastIndexOf(":")+1);
+        }
+
+        return author + message;
     }
 }

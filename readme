@@ -1,1 +1,8 @@
-Nothing much
+Nothing much..
+
+Terminal usuage:
+	Compile using:	./compile.sh
+	Run using:	./run.sh
+
+TODO:
+Format text-entering.

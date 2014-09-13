@@ -50,14 +50,16 @@ public class Main {
                 connect(params[0], Integer.parseInt(params[1]));
             }
         } else if (command.equals("help")) {
-            System.out.println("Available commands:\n\t/quit\n\t/connect [<host:port>]\n\t/join <channel>\n\t/leave <channel>\n\t/help");
-        } else if (command.startsWith("join")) {
+            System.out.println("Available commands:\n  /quit\n  /connect [<host:port>]\n  /join <channel>\n  /leave [<channel>]\n  /help");
+        } else if (command.startsWith("join") && command.length() > "join".length()) {
             String channel = command.substring("join".length()+1);
             if (channel.length() > 1)
                 client.joinChannel(channel);
             else
                 System.out.println("Invalid parameters for join. Channels must be prefixed with \"#\".");
         } else if (command.startsWith("leave")) {
+            if (command.equals("leave"))
+                client.leaveChannel();
             String channel = command.substring("leave".length()+1);
             if (channel.length() > 1)
                 client.leaveChannel(channel);
