@@ -65,7 +65,14 @@ public class Main {
                 client.leaveChannel(channel);
             else
                 System.out.println("Invalid parameters for leave. Channels must be prefixed with \"#\".");
-        } else {
+        } else if (command.startsWith("names")) {
+            if (command.length() == "names".length())
+                client.sendNamesMessage();
+            else
+                client.sendNamesMessage(command.substring("names".length()+1));
+        } else if (command.startsWith("nick")) {
+		client.sendNickMessage(command.substring("nick".length()+1));
+	} else {
             System.out.println("Invalid command. Try \"/help\" for instructions.");
         }
     }

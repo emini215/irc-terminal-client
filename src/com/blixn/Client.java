@@ -42,7 +42,7 @@ public class Client {
 
     private void registerConnection(User user) {
         System.out.println("Connecting to " + connection.getInetAddress().getHostName() + ".");
-        //sendPassMessage("somesecretpassword");
+        sendPassMessage("somesecretpassword");
         sendNickMessage(user.getAlias());
         sendUserMessage(user.getAlias(), 0, user.getRealName());
         //joinChannel("#zhg");
@@ -52,7 +52,7 @@ public class Client {
         sendMessage("PASS " + password);
     }
 
-    private void sendNickMessage(String nick) {
+    public void sendNickMessage(String nick) {
         sendMessage("NICK " + nick);
     }
 
@@ -73,6 +73,14 @@ public class Client {
             sendPrivateMessage(current_channel, message);
         else
             System.out.println("You need a message-destination!");
+    }
+
+    public void sendNamesMessage() {
+        sendMessage("NAMES");
+    }
+
+    public void sendNamesMessage(String channel) {
+        sendMessage("NAMES " + channel);
     }
 
     public void sendMessage(String message) {
